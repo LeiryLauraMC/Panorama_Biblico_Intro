@@ -1,2 +1,2 @@
 # ❤️ Panorama Bíblico: Introducción
-[Abrir página web](https://leirylauramc.github.io/Semilleros/)
+[Abrir página web](https://leirylauramc.github.io/Panorama_Biblico_Intro/)
