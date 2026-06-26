@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panorama Bíblico - Iglesia Comunidad Cristiana Gosén</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5ede1 0%, #f0e6d8 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 60px;
+            animation: slideIn 0.8s ease-out;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #faf6f0 0%, #f5e8dd 100%);
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: #d4a574;
+            border-radius: 4px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .header-slide {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            gap: 40px;
+        }
+
+        .logo-container {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+            animation: slideInLeft 0.8s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(168, 137, 103, 0.1) 100%);
+            border-radius: 24px;
+            padding: 20px;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(139, 111, 71, 0.2));
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-title {
+            font-size: 2.8rem;
+            color: #8b6f47;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .slide-subtitle {
+            font-size: 1.4rem;
+            color: #a88967;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .slide-title-side {
+            font-size: 2.2rem;
+            color: #8b6f47;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .slide-title-small {
+            font-size: 2rem;
+            color: #8b6f47;
+            margin-bottom: 30px;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 4px solid #d4a574;
+            box-shadow: 0 8px 32px rgba(139, 111, 71, 0.08);
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .content-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(139, 111, 71, 0.12);
+        }
+
+        .content-box h3 {
+            color: #8b6f47;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .content-box p {
+            color: #5c4033;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .verse-box {
+            background: linear-gradient(135deg, #e8d5c4 0%, #dcc5b0 100%);
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 6px solid #a88967;
+            font-style: italic;
+            color: #3d2817;
+            font-size: 1.05rem;
+            margin: 15px 0;
+            animation: slideInRight 0.8s ease-out 0.4s both;
+            line-height: 1.8;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .activity-container {
+            background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+            border-radius: 16px;
+            padding: 35px;
+            border: 2px dashed #d4a574;
+            animation: slideInUp 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .activity-title {
+            font-size: 1.8rem;
+            color: #8b6f47;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .activity-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #d4a574 0%, #c09563 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: rotate 2s linear infinite;
+            box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .table-wrapper {
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        th {
+            background: linear-gradient(135deg, #d4a574 0%, #c09563 100%);
+            color: white;
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            font-size: 0.95rem;
+        }
+
+        td {
+            padding: 12px 14px;
+            color: #5c4033;
+            border-bottom: 1px solid #e8d5c4;
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background: #faf6f0;
+        }
+
+        .question {
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid #a88967;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .question:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(8px);
+        }
+
+        .question.revealed .answer {
+            display: block;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+                transform: translateY(0);
+            }
+        }
+
+        .answer {
+            display: none;
+            background: #e8d5c4;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            color: #3d2817;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            animation: fadeIn 0.8s ease-out 0.6s both;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        button {
+            background: linear-gradient(135deg, #d4a574 0%, #c09563 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #d9cfc4;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            font-size: 1.1rem;
+            color: #8b6f47;
+            font-weight: 600;
+        }
+
+        .commitment {
+            background: linear-gradient(135deg, #d4c5b9 0%, #c9b5a8 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            color: #3d2817;
+            border-left: 6px solid #8b6f47;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        .commitment strong {
+            color: #5c4033;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-group label {
+            color: #5c4033;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .input-group input,
+        .input-group textarea {
+            padding: 12px;
+            border: 2px solid #d4a574;
+            border-radius: 8px;
+            font-family: inherit;
+            color: #3d2817;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #a88967;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid #d4a574;
+            color: #5c4033;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .option-btn:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: #a88967;
+        }
+
+        .option-btn.selected {
+            background: #d4a574;
+            color: white;
+            border-color: #a88967;
+        }
+
+        .option-btn.correct {
+            background: #7fb07f;
+            color: white;
+            border-color: #5a7d5a;
+        }
+
+        .option-btn.incorrect {
+            background: #b07f7f;
+            color: white;
+            border-color: #8a5a5a;
+        }
+
+        .reflection-area {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #d4a574;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: #3d2817;
+            background: rgba(255, 255, 255, 0.8);
+            resize: none;
+        }
+
+        .reflection-area:focus {
+            outline: none;
+            border-color: #a88967;
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.2);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #e8d5c4;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4a574 0%, #a88967 100%);
+            border-radius: 3px;
+            animation: fillProgress 0.8s ease-out;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: var(--progress); }
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px 18px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border-left: 4px solid #d4a574;
+            color: #5c4033;
+            line-height: 1.7;
+            animation: fadeInLeft 0.6s ease-out forwards;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .list-item:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(8px);
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .center-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 30px;
+        }
+
+        .opening-animation {
+            animation: scaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.15) 0%, rgba(168, 137, 103, 0.1) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #d4a574;
+            animation: slideInUp 0.8s ease-out 0.3s both;
+        }
+
+        .highlight-box h4 {
+            color: #8b6f47;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .highlight-box p {
+            color: #5c4033;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .timeline-dot {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #d4a574 0%, #c09563 100%);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+            box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #d4a574;
+        }
+
+        .timeline-content strong {
+            color: #8b6f47;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .timeline-content p {
+            color: #5c4033;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .comparison-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            border-top: 4px solid #d4a574;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .comparison-card h4 {
+            color: #8b6f47;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .comparison-card p {
+            color: #5c4033;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .key-stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d4a574;
+            text-align: center;
+            margin: 15px 0;
+            text-shadow: 0 2px 4px rgba(212, 165, 116, 0.2);
+        }
+
+        .stat-label {
+            text-align: center;
+            color: #8b6f47;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #d4a574 50%, transparent 100%);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- PORTADA -->
+        <div class="slide active">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 0%;"></div>
+            </div>
+
+            <div class="center-content">
+                <div class="logo-container">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='none'/%3E%3C/svg%3E" alt="Gosén" id="logoImg">
+                </div>
+                <div>
+                    <h1 class="slide-title opening-animation">Panorama Bíblico</h1>
+                    <p class="slide-subtitle">Iglesia Comunidad Cristiana Gosén</p>
+                </div>
+                <div class="verse-box">
+                    "Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia."<br><br>2 Timoteo 3:16 — RVR 1960
+                </div>
+            </div>
+
+            <div class="controls">
+                <span class="slide-counter">Clase 1 de 5</span>
+                <button onclick="nextSlide()" style="margin-left: auto;">Comenzar</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 2 - INTRODUCCIÓN -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Parte I: Fundamentos</h1>
+
+            <div class="content-section">
+                <div class="highlight-box">
+                    <h4>¿Qué es el Panorama Bíblico?</h4>
+                    <p>Una visión general y conectada de toda la Biblia, desde Génesis hasta Apocalipsis. Entenderemos cómo 66 libros escritos por 40 autores en 1,500 años forman un mensaje coherente: la redención de la humanidad a través de Jesucristo.</p>
+                </div>
+
+                <div class="key-stat">66 libros</div>
+                <div class="stat-label">Un solo mensaje de redención</div>
+
+                <div class="divider"></div>
+
+                <p style="color: #5c4033; font-size: 0.95rem; line-height: 1.7; text-align: center;">
+                    En esta clase aprenderemos sobre el significado, la estructura, la clasificación y los idiomas originales de la Biblia.
+                </p>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 2 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 3 - ETIMOLOGÍA -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">La Palabra "Biblia"</h1>
+
+            <div class="content-section">
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="animation-delay: 0.1s;">
+                        <h4>Origen Griego</h4>
+                        <p><strong>Βιβλία (Biblia)</strong> = "los libros"<br>
+                        <strong>Βιβλίον (Biblion)</strong> = "libro"</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.2s;">
+                        <h4>Raíz Etimológica</h4>
+                        <p>Proviene de <strong>Byblos</strong>, ciudad fenicia célebre por exportar papiros — el material de escritura de la antigüedad.</p>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="animation-delay: 0.3s;">
+                        <h4>Primer Uso Moderno</h4>
+                        <p><strong>San Juan Crisóstomo</strong> (siglo IV d.C.) fue uno de los primeros en usar el plural "Biblia" para designar las Escrituras como un todo unificado y sagrado.</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.4s;">
+                        <h4>Lo Extraordinario</h4>
+                        <p>Una colección de 66 libros con 40 autores en 1,500 años, pero reconocemos como <strong>UN SOLO LIBRO</strong> con un mensaje central.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 3 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 4 - ESTRUCTURA GENERAL -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Estructura Básica</h1>
+
+            <div class="content-section">
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="animation-delay: 0.1s;">
+                        <h4>Antiguo Testamento</h4>
+                        <p><span class="key-stat" style="font-size: 2rem; margin: 10px 0;">39</span>
+                        <span class="stat-label">libros</span><br><br>
+                        <strong style="color: #8b6f47;">Idiomas:</strong> Hebreo y arameo<br>
+                        <strong style="color: #8b6f47;">Período:</strong> ~1500-400 a.C.</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.2s;">
+                        <h4>Nuevo Testamento</h4>
+                        <p><span class="key-stat" style="font-size: 2rem; margin: 10px 0;">27</span>
+                        <span class="stat-label">libros</span><br><br>
+                        <strong style="color: #8b6f47;">Idioma:</strong> Griego koiné<br>
+                        <strong style="color: #8b6f47;">Período:</strong> ~50-100 d.C.</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Un Solo Tema</h4>
+                    <p>La redención de la humanidad a través de Jesucristo — el hilo conductor desde Génesis hasta Apocalipsis. Todo apunta a Cristo.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 4 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 5 - CLASIFICACIÓN AT (1/2) -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Clasificación: Antiguo Testamento (Parte 1)</h1>
+
+            <div class="content-section">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CATEGORÍA</th>
+                                <th>CANTIDAD</th>
+                                <th>EJEMPLOS PRINCIPALES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pentateuco (Ley/Torah)</strong></td>
+                                <td>5</td>
+                                <td>Génesis, Éxodo, Levítico, Números, Deuteronomio</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Libros Históricos</strong></td>
+                                <td>12</td>
+                                <td>Josué, Jueces, Rut, Samuel, Reyes, Crónicas, Esdras, Nehemías, Ester</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Libros Poéticos</strong></td>
+                                <td>5</td>
+                                <td>Job, Salmos, Proverbios, Eclesiastés, Cantares</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p style="color: #8b6f47; text-align: center; font-weight: 600; margin-top: 20px;">Estos 22 libros forman la primera parte de la Biblia</p>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 5 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 6 - CLASIFICACIÓN AT (2/2) -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Clasificación: Antiguo Testamento (Parte 2)</h1>
+
+            <div class="content-section">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CATEGORÍA</th>
+                                <th>CANTIDAD</th>
+                                <th>EJEMPLOS PRINCIPALES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Profetas Mayores</strong></td>
+                                <td>5</td>
+                                <td>Isaías, Jeremías, Lamentaciones, Ezequiel, Daniel</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profetas Menores</strong></td>
+                                <td>12</td>
+                                <td>Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías, Hageo, Zacarías, Malaquías</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Nota sobre los "Mayores" y "Menores"</h4>
+                    <p>La distinción no es por importancia, sino por extensión. Los Profetas Mayores tienen libros más largos; los Menores, libros más cortos. Todos son igualmente inspirados.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 6 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 7 - CLASIFICACIÓN NT -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Clasificación: Nuevo Testamento</h1>
+
+            <div class="content-section">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>CATEGORÍA</th>
+                                <th>CANTIDAD</th>
+                                <th>LIBROS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Evangelios</strong></td>
+                                <td>4</td>
+                                <td>Mateo, Marcos, Lucas, Juan</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Libro Histórico</strong></td>
+                                <td>1</td>
+                                <td>Hechos de los Apóstoles</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Epístolas Paulinas</strong></td>
+                                <td>13</td>
+                                <td>Romanos, Corintios (2), Gálatas, Efesios, Filipenses, Colosenses, Tesalonicenses (2), Timoteo (2), Tito, Filemón</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Epístolas Generales</strong></td>
+                                <td>8</td>
+                                <td>Hebreos, Santiago, Pedro (2), Juan (3), Judas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profético</strong></td>
+                                <td>1</td>
+                                <td>Apocalipsis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 7 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 8 - IDIOMAS -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Idiomas Originales de la Biblia</h1>
+
+            <div class="content-section">
+                <div class="comparison-card" style="animation-delay: 0.1s;">
+                    <h4>Hebreo Antiguo</h4>
+                    <p><strong>95% del Antiguo Testamento</strong><br>
+                    Lengua semítica. Escritura de derecha a izquierda. Originalmente sin vocales escritas. Los Masoretas (siglos VI-X d.C.) añadieron signos vocálicos para preservar la pronunciación exacta. Es un idioma muy poético y preciso.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.2s;">
+                    <h4>Arameo Bíblico</h4>
+                    <p><strong>1% del Antiguo Testamento</strong><br>
+                    Lengua semítica hermana del hebreo. Lengua franca del Oriente Medio. Aparece en Esdras 4:8-6:18 y Daniel 2:4-7:28. Palabras de Jesús: "Talita cumi" (Mc 5:41) y "Eloi, Eloi, lama sabactani" (Mc 15:34).</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.3s;">
+                    <h4>Griego Koiné</h4>
+                    <p><strong>100% del Nuevo Testamento</strong><br>
+                    El griego del pueblo llano, hablado en todo el Imperio Romano durante el primer siglo. Es rico en matices. Ejemplo: cuatro palabras para "amor" — eros, storge, phileo, agape — cada una con significado único.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 8 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 9 - TRADUCCIONES ANTIGUAS -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Traducciones Antiguas Importantes</h1>
+
+            <div class="content-section">
+                <div class="timeline">
+                    <div class="timeline-item" style="animation-delay: 0.1s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Septuaginta (Siglos III-I a.C.)</strong>
+                            <p>Primera traducción conocida: Antiguo Testamento hebreo al griego en Alejandría. Permitió a judíos de la diáspora y gentiles curiosos acceder a las Escrituras.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.2s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Vulgata Latina (382-405 d.C.)</strong>
+                            <p>Jerónimo tradujo la Biblia completa al latín por encargo del Papa Dámaso I. Fue el texto oficial de la iglesia occidental por más de 1,000 años.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.3s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>El Textus Receptus (1500s)</strong>
+                            <p>Compilación del Nuevo Testamento griego que sirvió de base para muchas traducciones posteriores, incluyendo la King James.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 9 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 1: SLIDE 10 - ACTIVIDAD 1 -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 20%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Actividad 1: Clasifica los Libros</h1>
+
+            <div class="activity-container">
+                <div class="activity-title">
+                    <div class="activity-icon">1</div>
+                    Identifica la clasificación correcta
+                </div>
+
+                <p style="color: #5c4033; margin-bottom: 20px; font-size: 0.95rem;">En la tabla anterior faltan algunos libros. Tu tarea es identificar a qué clasificación pertenecen:</p>
+
+                <div id="activity1" class="mt-20"></div>
+
+                <div class="commitment mt-20">
+                    <strong>Compromiso para esta semana:</strong>
+                    Apréndete los 66 libros de la Biblia con sus clasificaciones. Puedes hacerlo en orden o por categoría. Considera hacer tarjetas de estudio o usar una aplicación como Quizlet.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 1: Diapositiva 10 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 11 - INTRODUCCIÓN -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Parte II: Historia y Evidencias</h1>
+
+            <div class="content-section">
+                <div class="highlight-box">
+                    <h4>¿Por qué es importante?</h4>
+                    <p>La Biblia no es mitología o literatura religiosa genérica. Sus narraciones están ancladas en la historia verificable y corroboradas por múltiples fuentes externas independientes — historiadores, documentos de Estado, inscripciones y registros de civilizaciones antiguas.</p>
+                </div>
+
+                <div class="key-stat">4,000+ años</div>
+                <div class="stat-label">De historia real verificable</div>
+
+                <div class="divider"></div>
+
+                <p style="color: #5c4033; font-size: 0.95rem; line-height: 1.7; text-align: center;">
+                    Exploraremos evidencias históricas, arqueológicas y geográficas que confirman la precisión de las Escrituras.
+                </p>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 11 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 12 - CONTEXTO HISTÓRICO -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Contexto Histórico y Períodos</h1>
+
+            <div class="content-section">
+                <div class="timeline">
+                    <div class="timeline-item" style="animation-delay: 0.1s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Período Patriarcal (2000-1500 a.C.)</strong>
+                            <p>Mesopotamia, Ur, Canaán. Libros: Génesis, Job.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.2s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Éxodo y Conquista (1500-1000 a.C.)</strong>
+                            <p>Egipto faraónico, pueblos cananeos. Libros: Éxodo, Josué, Jueces.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.3s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Monarquía Unida (1050-930 a.C.)</strong>
+                            <p>Israel unificado. Libros: Samuel, Salmos, Proverbios.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.4s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Monarquía Dividida (930-586 a.C.)</strong>
+                            <p>Reinos de Israel y Judá. Libros: Reyes, Crónicas, Profetas mayores.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.5s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Exilio Babilónico (605-538 a.C.)</strong>
+                            <p>Imperio Neobabilónico. Libros: Daniel, Ezequiel, Lamentaciones.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" style="animation-delay: 0.6s;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <strong>Período Romano (63 a.C.-100 d.C.)</strong>
+                            <p>Vida de Cristo, nacimiento de la iglesia. Evangelios, Hechos, Epístolas, Apocalipsis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 12 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 13 - HISTORIADORES ANTIGUOS -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Historiadores Antiguos Confirman la Biblia</h1>
+
+            <div class="content-section">
+                <div class="comparison-card" style="animation-delay: 0.1s;">
+                    <h4>Flavio Josefo (37-100 d.C.)</h4>
+                    <p>Historiador judío-romano. En sus obras <em>Antigüedades Judías</em> y <em>La Guerra de los Judíos</em> menciona explícitamente a Jesús (Testimonium Flavianum), a Juan el Bautista, a Herodes el Grande, a Poncio Pilato y a Santiago el hermano del Señor.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.2s;">
+                    <h4>Tácito (56-120 d.C.)</h4>
+                    <p>Historiador romano. En sus <em>Anales</em> (Libro XV, cap. 44) confirma que Jesús fue ejecutado bajo Poncio Pilato durante el reinado de Tiberio, y que sus seguidores fueron perseguidos por Nerón.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.3s;">
+                    <h4>Plinio el Joven (61-113 d.C.)</h4>
+                    <p>Gobernador romano de Bitinia. En carta al emperador Trajano describe a los cristianos como personas que cantaban himnos a Cristo como a un dios, confirmando prácticas de la iglesia apostólica.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.4s;">
+                    <h4>Suetonio (69-122 d.C.)</h4>
+                    <p>Historiador romano. En <em>Vida de Claudio</em> menciona a judíos expulsados de Roma por disturbios causados por "Chrestus" — identificado con Cristo, coherente con Hechos 18:2.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 13 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 14 - HALLAZGOS ARQUEOLÓGICOS (1/2) -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Hallazgos Arqueológicos (Parte 1)</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Estela de Merneptah (1208 a.C.)</strong><br>
+                    Primera mención extrabiblica de Israel como pueblo. Inscripción del faraón Merneptah en el Museo de El Cairo confirma la existencia de Israel en Canaán antes del siglo XIII a.C.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Tel Dan Stele (Siglo IX a.C.)</strong><br>
+                    Inscripción aramea que menciona "Beit David" (Casa de David) — primera referencia extrabiblica al rey David. Confirma que David fue un rey histórico real, no legendario.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Prisma de Senaquerib (700 a.C.)</strong><br>
+                    El rey asirio describe su campaña contra Judá y el rey Ezequías encerrado en Jerusalén como "pájaro en jaula". Confirma 2 Reyes 18-19 e Isaías 36-37.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Cilindro de Ciro (539 a.C.)</strong><br>
+                    Ciro el Grande declara su política de restaurar pueblos cautivos a sus tierras de origen. Confirma Esdras 1:1-4 sobre el edicto de Ciro liberando a los judíos.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 14 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 15 - HALLAZGOS ARQUEOLÓGICOS (2/2) -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Hallazgos Arqueológicos (Parte 2)</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Rollos del Mar Muerto (1947)</strong><br>
+                    Descubiertos en Qumrán, incluyen el libro de Isaías completo datado ~150 a.C. — más de 1,000 años antes de los manuscritos medievales. Validación extraordinaria de la preservación textual.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Piscina de Betesda (Juan 5)</strong><br>
+                    Los arqueólogos encontraron exactamente los cinco pórticos descritos en Juan 5:2. Confirma la precisión geográfica del Evangelio de Juan escrito 60+ años después.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Ciudad de Nazaret</strong><br>
+                    Excavaciones desde 2009 confirman una aldea judía del siglo I en el área, incluyendo una casa del período. Refuta críticas del siglo XIX que dudaban de su existencia.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Inscripción de Poncio Pilato (1961)</strong><br>
+                    Placa de piedra caliza hallada en Cesarea Marítima. Primera confirmación arqueológica directa de Poncio Pilato como gobernador de Judea, como describen los Evangelios.
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Declaración de Nelson Glueck</h4>
+                    <p>"Nunca se ha encontrado ningún descubrimiento arqueológico que contradiga o refute una referencia bíblica histórica." — Nelson Glueck, uno de los grandes arqueólogos del siglo XX.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 15 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 16 - PRECISIÓN GEOGRÁFICA -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Validez Geográfica: Precisión del Texto Sagrado</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Evangelio de Juan</strong><br>
+                    Menciona la piscina de Betesda (5:2), piscina de Siloé (9:7), huerto de Getsemaní (18:1) — todas verificadas arqueológicamente con exactitud. John A.T. Robinson usó esta precisión como argumento para datación temprana.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Viajes de Pablo en Hechos</strong><br>
+                    Detalles de puertos, ciudades, distancias marítimas y terrestres. El arqueólogo Sir William Ramsay lo calificó como el documento histórico más confiable de la antigüedad grecorromana.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Valle del Jordán (Génesis 13:10)</strong><br>
+                    Descrito como bien regado. La geología confirma que fue fértil antes de un cataclismo que la transformó en desierto salino, coherente con la destrucción de Sodoma.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Naufragio de Pablo (Hechos 27)</strong><br>
+                    Describe con exactitud técnica el fondeo en dos anclas de popa. James Smith realizó estudio náutico exhaustivo y concluyó que es imposible para alguien que no hubiera vivido los hechos.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 16 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 2: SLIDE 17 - ACTIVIDAD 2 -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 40%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Actividad 2: Verdadero o Falso</h1>
+
+            <div class="activity-container">
+                <div class="activity-title">
+                    <div class="activity-icon">2</div>
+                    Responde si es Verdadero o Falso
+                </div>
+
+                <div id="activity2" class="mt-20"></div>
+
+                <div class="commitment mt-20">
+                    <strong>Compromiso para esta semana:</strong>
+                    Investiga acerca de otro hallazgo arqueológico diferente a los mencionados que confirme la validez de las Escrituras. Considera buscar en sitios como Bible.com, ArchaeologyMag.com o en publicaciones de la Sociedad Bíblica.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 2: Diapositiva 17 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 18 - INTRODUCCIÓN -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Parte III: Autores y Geografía</h1>
+
+            <div class="content-section">
+                <div class="highlight-box">
+                    <h4>Aproximadamente 40 Autores</h4>
+                    <p>Dios usó aproximadamente 40 autores humanos de trasfondos radicalmente diferentes durante ~1,500 años. Esta diversidad demuestra la unidad sobrenatural de las Escrituras bajo la inspiración del Espíritu Santo (2 Pedro 1:21).</p>
+                </div>
+
+                <div class="verse-box">
+                    "porque nunca la profecía fue traída por voluntad humana, sino que los santos hombres de Dios hablaron siendo inspirados por el Espíritu Santo."<br><br>2 Pedro 1:21 — RVR 1960
+                </div>
+
+                <p style="color: #5c4033; font-size: 0.95rem; line-height: 1.7; text-align: center;">
+                    Conoceremos a estos autores, sus profesiones diversas y los lugares donde escribieron.
+                </p>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 18 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 19 - AUTORES AT -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Autores del Antiguo Testamento</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Moisés</strong> (Líder, legislador, pastor)<br>
+                    Génesis, Éxodo, Levítico, Números, Deuteronomio — El Pentateuco completo. Escrito en el desierto del Sinaí durante 40 años.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">David</strong> (Rey, músico, poeta)<br>
+                    Gran parte de los Salmos. Rey de Israel que escribía poesía lírica sobre su relación con Dios — desde batalla hasta alabanza.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Salomón</strong> (Rey, filósofo, arquitecto)<br>
+                    Proverbios, Eclesiastés, Cantares. Sus escritos reflejan sabiduría práctica y reflexión sobre la vida.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Profetas Mayores</strong> (Isaías, Jeremías, Ezequiel, Daniel)<br>
+                    De familia noble, sacerdotes, administradores. Llamados a proclamar la Palabra de Dios en tiempos de crisis nacional.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.5s;">
+                    <strong style="color: #8b6f47;">Amós</strong> (Pastor y agricultor)<br>
+                    Profeta que dejó su oficio para proclamar justicia a Israel. Ejemplo de obediencia a la llamada de Dios.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 19 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 20 - AUTORES NT -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Autores del Nuevo Testamento</h1>
+
+            <div class="content-section">
+                <div class="comparison-grid">
+                    <div class="comparison-card" style="animation-delay: 0.1s;">
+                        <h4>Mateo (Leví)</h4>
+                        <p><strong>Profesión:</strong> Cobrador de impuestos (publicano)<br>
+                        <strong>Escribió:</strong> Evangelio de Mateo<br>
+                        Excelente con números y detalles. Presenta a Jesús como el Mesías Rey.</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.2s;">
+                        <h4>Marcos</h4>
+                        <p><strong>Profesión:</strong> Asistente misionero (intérprete de Pedro)<br>
+                        <strong>Escribió:</strong> Evangelio de Marcos<br>
+                        Escribió el Evangelio más corto, dinámico y enfocado en la acción de Jesús.</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.3s;">
+                        <h4>Lucas</h4>
+                        <p><strong>Profesión:</strong> Médico, historiador, compañero de Pablo<br>
+                        <strong>Escribió:</strong> Evangelio de Lucas, Hechos<br>
+                        Único historiador no-judío del NT. Énfasis en humanidad y compasión de Jesús.</p>
+                    </div>
+
+                    <div class="comparison-card" style="animation-delay: 0.4s;">
+                        <h4>Juan</h4>
+                        <p><strong>Profesión:</strong> Pescador, apóstol, pastor de iglesias<br>
+                        <strong>Escribió:</strong> Evangelio de Juan, 1-2-3 Juan, Apocalipsis<br>
+                        El "apóstol que Jesús amaba". Evangelio profundo y teológico.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 20 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 21 - PABLO Y OTROS -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Pablo, Pedro y Otros Apóstoles</h1>
+
+            <div class="content-section">
+                <div class="comparison-card" style="animation-delay: 0.1s;">
+                    <h4>Pablo (Saulo de Tarso)</h4>
+                    <p><strong>Profesión:</strong> Fariseo, fabricante de tiendas, apóstol<br>
+                    <strong>Escribió:</strong> 13 Epístolas (Romanos, Corintios, Gálatas, Efesios, Filipenses, Colosenses, Tesalonicenses, Timoteo, Tito, Filemón)<br>
+                    El teólogo más brillante del NT. Revolucionó la comprensión del Evangelio para judíos y gentiles.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.2s;">
+                    <h4>Pedro</h4>
+                    <p><strong>Profesión:</strong> Pescador, apóstol, líder de Jerusalén<br>
+                    <strong>Escribió:</strong> 1-2 Pedro<br>
+                    Apóstol principal en Jerusalén. Sus epístolas hablan de sufrimiento, fe viva y esperanza eterna.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.3s;">
+                    <h4>Santiago</h4>
+                    <p><strong>Profesión:</strong> Líder de la iglesia de Jerusalén, hermano del Señor<br>
+                    <strong>Escribió:</strong> Epístola de Santiago<br>
+                    Énfasis en la fe práctica y obras que demuestran fe genuina.</p>
+                </div>
+
+                <div class="comparison-card" style="animation-delay: 0.4s;">
+                    <h4>Judas</h4>
+                    <p><strong>Profesión:</strong> Hermano del Señor<br>
+                    <strong>Escribió:</strong> Epístola de Judas<br>
+                    Epístola breve pero poderosa sobre advertencia contra herejías y construcción en fe.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 21 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 22 - REGIONES GEOGRÁFICAS -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Regiones Donde Fue Escrita la Biblia</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Desierto del Sinaí</strong><br>
+                    Nómadas en el desierto. Moisés escribió Éxodo, Levítico, Números, Deuteronomio durante 40 años de peregrinación.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Tierra Prometida (Canaán)</strong><br>
+                    En palacios, aldeas y campos. Desde Josué hasta los Evangelios — el lugar central de la Biblia.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Babilonia/Mesopotamia</strong><br>
+                    En cautividad. Daniel y Ezequiel escribieron en exilio forzado, animando a los cautivos con promesas de restauración.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Asia Menor (Turquía)</strong><br>
+                    En iglesias locales y prisiones. Efesios, Colosenses, Gálatas, Apocalipsis — la iglesia primitiva en expansión y persecución.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.5s;">
+                    <strong style="color: #8b6f47;">Roma/Italia e Isla de Patmos</strong><br>
+                    En prisión domiciliaria y exilio. Filipenses, 2 Timoteo, Apocalipsis — escrituras desde lugares de restricción y dolor.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 22 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 3: SLIDE 23 - ACTIVIDAD 3 -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 60%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Actividad 3: Relaciona Autor con Libro</h1>
+
+            <div class="activity-container">
+                <div class="activity-title">
+                    <div class="activity-icon">3</div>
+                    Empareja cada autor con su libro principal
+                </div>
+
+                <div id="activity3" class="mt-20"></div>
+
+                <div class="commitment mt-20">
+                    <strong>Compromiso para esta semana:</strong>
+                    Investiga la biografía completa de uno de los autores de la Biblia que más te haya impactado. Lee sobre sus circunstancias, su llamado, sus luchas y su legado. Prepárate para compartir un dato interesante en la próxima clase.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 3: Diapositiva 23 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 4: SLIDE 24 - INTRODUCCIÓN -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 80%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Parte IV: La Biblia en el Mundo</h1>
+
+            <div class="content-section">
+                <div class="highlight-box">
+                    <h4>Influencia Global</h4>
+                    <p>Independientemente de la fe, historiadores, juristas y filósofos reconocen que la Biblia es el libro más influyente en la historia de la civilización occidental — y cada vez más en la historia global.</p>
+                </div>
+
+                <div class="key-stat">3,600+</div>
+                <div class="stat-label">Idiomas con porción bíblica (97% de la población)</div>
+
+                <div class="divider"></div>
+
+                <p style="color: #5c4033; font-size: 0.95rem; line-height: 1.7; text-align: center;">
+                    Exploraremos su impacto en derecho, educación, ciencia, artes, abolición de esclavitud y derechos humanos.
+                </p>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 4: Diapositiva 24 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 4: SLIDE 25 - IMPACTO CULTURAL -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 80%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Impacto en la Civilización Occidental</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Derecho y Jurisprudencia</strong><br>
+                    Los Diez Mandamientos (Éxodo 20) son base del derecho occidental. Magna Carta (1215), Declaración de Independencia (1776), constituciones democráticas modernas se fundamentan en conceptos bíblicos: dignidad humana, igualdad ante la ley, derechos inalienables.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Educación Universitaria</strong><br>
+                    Las primeras universidades de Occidente fueron fundadas para estudiar la Biblia: Oxford (1167), Cambridge (1209), Bolonia (1088), Harvard (1636). El impulso de que todo ser humano debe saber leer para acceder a las Escrituras fue motor directo de alfabetización masiva.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Ciencia y Método Científico</strong><br>
+                    Galileo, Copérnico, Newton, Kepler, Pasteur, Faraday, Mendel — padres de la ciencia moderna — eran creyentes que veían su trabajo como pensar los pensamientos de Dios. Newton dedicó más escritos a la Biblia que a la física.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Artes y Literatura</strong><br>
+                    Dante, Shakespeare, Cervantes, Milton, Dostoievski, Tolstói, García Márquez — incomprensibles sin la Biblia. Bach, Haendel, Haydn, Mozart, Beethoven — más de 450 obras con texto bíblico directo.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 4: Diapositiva 25 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 4: SLIDE 26 - DISTRIBUCIÓN Y PERSECUCIÓN -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 80%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Distribución Global y Persecución</h1>
+
+            <div class="content-section">
+                <div class="highlight-box" style="animation-delay: 0.1s;">
+                    <h4>Libro más perseguido de la historia</h4>
+                    <p>Imperios, emperadores y sistemas políticos han intentado eliminar la Biblia — ninguno lo ha logrado. Antíoco IV, Diocleciano, Nerón, inquisidores medievales, Stalin, Mao, Hitler, ISIS — todos fracasaron.</p>
+                </div>
+
+                <div class="verse-box">
+                    "El cielo y la tierra pasarán, pero mis palabras no pasarán."<br><br>Mateo 24:35 — RVR 1960
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Métodos de Distribución</strong><br>
+                    Manuscritos copiados a mano → Septuaginta (traducción griega) → Vulgata Latina → Imprenta de Gutenberg (1455) → Reforma Protestante → Sociedades Bíblicas (1804+) → Era Digital (YouVersion, 700M descargas)
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Alcance Actual</strong><br>
+                    Biblia completa en 730+ idiomas. NT en 1,660 idiomas adicionales. Al menos un libro en 3,600+ idiomas. Total: 5,990+ idiomas (97% de la población mundial tiene acceso).
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 4: Diapositiva 26 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 4: SLIDE 27 - VERSIONES EN ESPAÑOL -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 80%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Versiones de la Biblia en Español</h1>
+
+            <div class="content-section">
+                <div class="list-item" style="animation-delay: 0.1s;">
+                    <strong style="color: #8b6f47;">Reina-Valera 1960 (RVR60)</strong><br>
+                    La más usada en iglesias evangélicas latinoamericanas. Lenguaje formal y majestuoso. Base: Casiodoro de Reina (1569), revisada por Cipriano de Valera (1602).
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.2s;">
+                    <strong style="color: #8b6f47;">Reina-Valera Contemporánea (RVC)</strong><br>
+                    Actualización del texto RVR con lenguaje más contemporáneo manteniendo fidelidad al original.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.3s;">
+                    <strong style="color: #8b6f47;">Nueva Versión Internacional (NVI)</strong><br>
+                    Traducción de equivalencia dinámica; lenguaje natural y lectura fluida. Popular en estudios bíblicos.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.4s;">
+                    <strong style="color: #8b6f47;">Biblia de las Américas (LBLA)</strong><br>
+                    Muy literal; ideal para estudio serio y análisis profundo de la Palabra.
+                </div>
+
+                <div class="list-item" style="animation-delay: 0.5s;">
+                    <strong style="color: #8b6f47;">Dios Habla Hoy (DHH) y Nueva Traducción Viviente (NTV)</strong><br>
+                    Lenguaje coloquial y contemporáneo. Útiles para nuevos creyentes, evangelismo e introducción a la Biblia.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 4: Diapositiva 27 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 4: SLIDE 28 - ACTIVIDAD 4 -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 80%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Actividad 4: Preguntas de Opción Múltiple</h1>
+
+            <div class="activity-container">
+                <div class="activity-title">
+                    <div class="activity-icon">4</div>
+                    Responde las preguntas
+                </div>
+
+                <div id="activity4" class="mt-20"></div>
+
+                <div class="commitment mt-20">
+                    <strong>Compromiso para esta semana:</strong>
+                    Investiga un testimonio de misioneros que han predicado la palabra de Dios en países donde se encuentra prohibida. Busca en Puertas Abiertas, Release International o Sociedades Bíblicas Unidas. Prepárate para compartir un resumen en clase.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 4: Diapositiva 28 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 5: SLIDE 29 - FUNDAMENTO ESPIRITUAL -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 100%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Parte V: Fundamento Espiritual</h1>
+
+            <div class="content-section">
+                <div class="verse-box">
+                    "Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra."<br><br>2 Timoteo 3:16-17
+                </div>
+
+                <div class="verse-box">
+                    "Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos; y penetra hasta partir el alma y el espíritu, las coyunturas y los tuétanos, y discierne los pensamientos y las intenciones del corazón."<br><br>Hebreos 4:12
+                </div>
+
+                <div class="verse-box">
+                    "Escudriñad las Escrituras; porque a vosotros os parece que en ellas tenéis la vida eterna; y ellas son las que dan testimonio de mí."<br><br>Juan 5:39
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 5: Diapositiva 29 de 30</span>
+                <button onclick="nextSlide()">Siguiente</button>
+            </div>
+        </div>
+
+        <!-- CLASE 5: SLIDE 30 - ACTIVIDAD 5 Y CIERRE -->
+        <div class="slide">
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress: 100%;"></div>
+            </div>
+
+            <h1 class="slide-title-small">Actividad 5: Reflexión Personal</h1>
+
+            <div class="activity-container">
+                <div class="activity-title">
+                    <div class="activity-icon">5</div>
+                    Pregunta abierta de reflexión
+                </div>
+
+                <p style="color: #8b6f47; font-size: 1.1rem; font-weight: 600; margin: 20px 0;">¿Cómo la Palabra de Dios ha transformado tu vida?</p>
+
+                <textarea id="reflexionText" class="reflection-area" placeholder="Escribe tu reflexión aquí... Sé honesto y profundo."></textarea>
+
+                <div class="commitment mt-20">
+                    <strong>Compromiso Final:</strong>
+                    Ora durante esta semana para que el Espíritu Santo te dé discernimiento y guía para estudiar las Escrituras. Comienza a leer el Evangelio de Mateo o el libro de Génesis y comprométete a terminar de leerlo. Registra tus descubrimientos en un diario o cuaderno. Vuelve aquí cada día con lo que Dios te enseña.
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="previousSlide()">Atrás</button>
+                <span class="slide-counter">Clase 5: Diapositiva 30 de 30 (Final)</span>
+                <button onclick="saveReflection()">Guardar Reflexión</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Cargar logo real desde archivo
+        document.addEventListener('DOMContentLoaded', function() {
+            const img = document.getElementById('logoImg');
+            img.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==';
+            // Nota: Reemplaza con la ruta real de tu logo
+            
+            showSlide(0);
+            initializeActivities();
+        });
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[n].classList.add('active');
+            updateProgressBar(n);
+            window.scrollTo(0, 0);
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function updateProgressBar(slideIndex) {
+            const progress = ((slideIndex + 1) / totalSlides) * 100;
+            const progressBar = slides[slideIndex].querySelector('.progress-bar');
+            if (progressBar) {
+                const fill = progressBar.querySelector('.progress-fill');
+                fill.style.setProperty('--progress', progress + '%');
+            }
+        }
+
+        function saveReflection() {
+            const text = document.getElementById('reflexionText').value;
+            if (text.trim()) {
+                alert('Reflexión guardada. ¡Excelente trabajo en este curso!\n\nRecuerda: Dios honra el corazón que busca entender Sus Escrituras sinceramente.');
+                localStorage.setItem('reflexionPanorama', text);
+            } else {
+                alert('Por favor, escribe tu reflexión antes de guardar.');
+            }
+        }
+
+        function initializeActivities() {
+            // Actividad 1
+            const activity1Books = [
+                { book: 'Rut', answer: 'Históricos' },
+                { book: 'Daniel', answer: 'Profetas Mayores' },
+                { book: 'Jonás', answer: 'Profetas Menores' },
+                { book: 'Hebreos', answer: 'Epístolas Generales' },
+                { book: 'Judas', answer: 'Epístolas Generales' }
+            ];
+
+            const activity1Container = document.getElementById('activity1');
+            activity1Books.forEach((item, index) => {
+                const question = document.createElement('div');
+                question.className = 'question';
+                question.innerHTML = `
+                    <div style="color: #5c4033; font-weight: 600; cursor: pointer;">¿A qué clasificación pertenece: <strong>${item.book}</strong>?</div>
+                    <div class="answer"><span style="color: #5c4033;">Clasificación: <strong>${item.answer}</strong></span></div>
+                `;
+                question.addEventListener('click', function() {
+                    this.classList.toggle('revealed');
+                });
+                activity1Container.appendChild(question);
+            });
+
+            // Actividad 2
+            const activity2Questions = [
+                { question: 'La historia abarca más de 4,000 años de historia real', answer: true },
+                { question: 'Los libros de la biblia fueron escritos a lo largo de 600 años', answer: false },
+                { question: 'La Biblia se desarrolló a lo largo de civilizaciones verificables como Mesopotamia, Egipto, Persia, Grecia y Roma', answer: true },
+                { question: 'Job fue el primer libro de la Biblia en escribirse', answer: true },
+                { question: 'Flavio Josefo fue un emperador babilónico que escribió sobre Jesús', answer: false },
+                { question: 'Los Rollos del Mar Muerto incluyen el libro completo de Isaías', answer: true }
+            ];
+
+            const activity2Container = document.getElementById('activity2');
+            activity2Questions.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                const answer = item.answer ? 'Verdadero' : 'Falso';
+                questionDiv.innerHTML = `
+                    <div style="color: #5c4033; font-weight: 600; margin-bottom: 10px;">${item.question}</div>
+                    <div class="grid-options">
+                        <button class="option-btn" onclick="handleTrueFalse(this, true, ${item.answer})">Verdadero</button>
+                        <button class="option-btn" onclick="handleTrueFalse(this, false, ${item.answer})">Falso</button>
+                    </div>
+                    <div class="answer" style="display: none;"><span style="color: #7fb07f;">Respuesta: <strong>${answer}</strong></span></div>
+                `;
+                activity2Container.appendChild(questionDiv);
+            });
+
+            // Actividad 3
+            const activity3Pairs = [
+                { author: 'Moisés', book: 'Génesis, Éxodo, Levítico' },
+                { author: 'David', book: 'Salmos' },
+                { author: 'Mateo', book: 'Evangelio de Mateo' },
+                { author: 'Lucas', book: 'Evangelio de Lucas, Hechos' },
+                { author: 'Pablo', book: 'Romanos, Corintios' },
+                { author: 'Juan', book: 'Evangelio de Juan, Apocalipsis' }
+            ];
+
+            const activity3Container = document.getElementById('activity3');
+            activity3Pairs.forEach((pair, index) => {
+                const matchDiv = document.createElement('div');
+                matchDiv.innerHTML = `
+                    <div style="background: rgba(255, 255, 255, 0.7); border-radius: 8px; padding: 12px; flex: 1; text-align: center; color: #5c4033; font-weight: 500;">${pair.author}</div>
+                    <div style="text-align: center; color: #a88967; font-weight: bold;">→</div>
+                    <div style="background: rgba(255, 255, 255, 0.7); border-radius: 8px; padding: 12px; flex: 1; text-align: center; color: #5c4033; font-size: 0.9rem;">${pair.book}</div>
+                `;
+                matchDiv.style.display = 'flex';
+                matchDiv.style.gap = '15px';
+                matchDiv.style.marginBottom = '12px';
+                matchDiv.style.alignItems = 'center';
+                activity3Container.appendChild(matchDiv);
+            });
+
+            // Actividad 4
+            const activity4Questions = [
+                { q: '¿Cómo se copiaban las Escrituras en los primeros tiempos?', options: ['En computadores', 'A mano', 'En imprentas'], correct: 1 },
+                { q: '¿Quién inventó la imprenta que ayudó a extender la Biblia?', options: ['Gutenberg', 'Moisés', 'Lutero'], correct: 0 },
+                { q: '¿Qué hizo Martín Lutero con la Biblia?', options: ['La tradujo al alemán', 'La destruyó', 'La escribió completa'], correct: 0 },
+                { q: '¿Qué aplicación ayudó a distribuir la Biblia en la era digital?', options: ['YouVersion', 'WhatsApp', 'Spotify'], correct: 0 },
+                { q: '¿Qué emperador ordenó destruir las Biblias del Imperio Romano?', options: ['Constantino', 'Diocleciano', 'David'], correct: 1 },
+                { q: 'Según el estudio, la Biblia es considerada:', options: ['El libro más perseguido y sobreviviente de la historia', 'El libro más corto del mundo', 'Un libro exclusivo para pastores'], correct: 0 }
+            ];
+
+            const activity4Container = document.getElementById('activity4');
+            activity4Questions.forEach((item, qIndex) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question';
+                
+                let optionsHTML = '<div class="grid-options">';
+                item.options.forEach((opt, oIndex) => {
+                    optionsHTML += `<button class="option-btn" data-correct="${oIndex === item.correct}" onclick="handleMultipleChoice(this, ${oIndex === item.correct})">${opt}</button>`;
+                });
+                optionsHTML += '</div>';
+                
+                qDiv.innerHTML = `
+                    <div style="color: #5c4033; font-weight: 600; margin-bottom: 10px;">${qIndex + 1}. ${item.q}</div>
+                    ${optionsHTML}
+                    <div class="answer" style="display: none;"><span style="color: #7fb07f;">Correcto</span></div>
+                `;
+                activity4Container.appendChild(qDiv);
+            });
+        }
+
+        function handleTrueFalse(button, selectedValue, correctValue) {
+            const buttons = button.parentElement.querySelectorAll('.option-btn');
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b === button) {
+                    if (selectedValue === correctValue) {
+                        b.classList.add('correct');
+                    } else {
+                        b.classList.add('incorrect');
+                    }
+                }
+            });
+            button.closest('.question').querySelector('.answer').style.display = 'block';
+        }
+
+        function handleMultipleChoice(button, isCorrect) {
+            const buttons = button.parentElement.querySelectorAll('.option-btn');
+            buttons.forEach(b => {
+                b.disabled = true;
+                if (b === button) {
+                    if (isCorrect) {
+                        b.classList.add('correct');
+                    } else {
+                        b.classList.add('incorrect');
+                    }
+                } else if (b.dataset.correct === 'true') {
+                    b.classList.add('correct');
+                }
+            });
+            button.closest('.question').querySelector('.answer').style.display = 'block';
+        }
+
+        // Navegación por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+    </script>
+</body>
+</html>
